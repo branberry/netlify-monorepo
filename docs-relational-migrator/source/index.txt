@@ -1,0 +1,157 @@
+:template: product-landing
+:hidefeedback: header
+:noprevnext:
+
+===========================
+What is Relational Migrator
+===========================
+
+.. introduction::
+
+   .. include:: /includes/fact-relational-migrator-intro.rst
+
+   |
+
+   .. button:: Download Relational Migrator
+      :uri: https://www.mongodb.com/try/download/relational-migrator
+
+.. image:: /img/hero.png
+   :alt: Homepage hero image
+
+.. kicker:: What You Can Do
+
+Bring Your Relational Workloads to MongoDB With Confidence
+----------------------------------------------------------
+
+.. tabs::
+
+   .. tab:: Mapping and Modelling
+      :tabid: mapping-mod
+
+      .. procedure::
+
+         .. step:: Visualize Source and Destination Schemas
+
+
+            Use the entity-relationship style :ref:`diagramming interface <rm-diagrams>` 
+            to visualize your schema and make schema mapping decisions.
+
+         .. step:: Customize While Migrating
+
+            Split or merge tables across collections. 
+            Embed a table as a :ref:`nested document <rm-embedded-documents>`
+            or :ref:`array <rm-embedded-array>` in an existing collection. 
+            Define :ref:`custom JavaScript expressions <rm-calculated-fields>` 
+            to create additional fields.
+
+      .. image:: /img/tab1img.png
+         :alt: Mapping and Modelling
+
+   .. tab:: Schema Recommendations
+      :tabid: schema-rec
+
+      .. procedure::
+
+         .. step:: Get Suggested Schema Recommendations
+
+            Accelerate your schema mapping by asking Relational
+            Migrator to :ref:`suggest a MongoDB schema <rm-new-rules-from-mappings>` 
+            for your workload, or start with a blank slate.
+
+
+         .. step:: Apply your Mapping Rules
+
+            Quickly apply recommended table mappings 
+            to a specific collection in your model.
+
+      .. image:: /img/tab2img.png
+         :alt: Schema Recommendations
+
+   .. tab:: Data Synchronization
+      :tabid: data-sync
+
+      .. procedure::
+
+
+         .. step:: Replicate From Supported Relational Systems
+
+            Replicate data from Oracle, MySQL, SQL Server, PostgreSQL,
+            or Sybase ASE to MongoDB Atlas or on-premises.
+
+         .. step:: Transform Data as Its Replicated
+
+            Use the saved :ref:`mapping definitions <rm-mapping-rules>` 
+            to transform data to the MongoDB schema as it's replicated.
+            Replication can be one time or continuous.
+
+      .. image:: /img/tab3img.png
+         :alt: Data synchronization
+
+   .. tab:: Convert your Application Code
+      :tabid: convert-application-code
+
+      .. procedure::
+         
+         .. step:: Pick a Language and Template
+
+            Support for popular enterprise languages including C#, Java, 
+            JavaScript, JSON, and :ref:`multiple template frameworks <rm-code-generation-templates>`.
+
+
+         .. step:: Automatically Generate Application Code
+
+            Use information about the new schema to accelerate 
+            :ref:`new code development <rm-download-all-code-files>`. 
+            Includes code generation of entity classes, persistence layers, and APIs.
+
+
+      .. image:: /img/tab4img.png
+         :alt: Convert your Application Code
+
+.. kicker:: Related Products & Resources
+
+Go Further with MongoDB
+-----------------------
+
+Explore libraries and tools for MongoDB.
+
+.. card-group::
+   :columns: 3
+   :style: compact
+
+   .. card::
+      :cta: Learn about Drivers
+      :url: https://www.mongodb.com/docs/drivers/
+      :icon-alt: MongoDB Atlas icon
+
+      Use MongoDB in your application’s language
+
+   .. card::
+      :cta: View Compass Docs
+      :url: https://www.mongodb.com/docs/compass/current/
+      :icon-alt: MongoDB University icon
+
+      Visually explore your data with MongoDB Compass
+
+   .. card::
+      :cta: View Ops Manager
+      :url: https://www.mongodb.com/docs/ops-manager/current/
+      :icon-alt: MongoDB Server icon
+
+      Manage and monitor your deployments
+
+.. toctree::
+   :titlesonly:
+   :hidden:
+
+   /getting-started
+   /installation
+   /projects/projects
+   /mapping-rules/mapping-rules
+   /table-filters/table-filters
+   /diagrams/diagrams
+   /jobs/sync-jobs
+   /connection-strings/connection-strings
+   /code-generation
+   {+migrator-api+} <api-docs>
+   /release-notes

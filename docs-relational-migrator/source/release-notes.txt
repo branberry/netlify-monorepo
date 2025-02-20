@@ -1,0 +1,297 @@
+=============
+Release Notes
+=============
+
+.. default-domain:: mongodb
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: twocols
+
+1.8.0 Changelog
+---------------
+
+*Released July 09, 2024*
+
+New features:
+
+- New conditional mapping rules for more advanced transformations:
+
+  - Mapping rule filters to include or exclude documents based on 
+    a custom Javascript expression.
+  - Array conditions to sort and limit embedded arrays, supporting
+    the application of the subset pattern.
+  - Improved modeling of foreign keys to support tables with 
+    multiple, potentially ambiguous references to a foreign table.
+
+- New light mode in web UI.
+- New undo/redo functionality for mapping rule editing.
+- Improved stored procedure conversion for Postgres and MySQL database 
+  by adding procedure headers.
+
+1.7.0 Changelog
+---------------
+
+*Released May 20, 2024*
+
+New features:
+
+- More detailed statistics while running a sync job, including viewing 
+  percentage complete, estimated time to completion, and which table is 
+  currently being processed.
+- Users can now recover a continuous sync job if the Relational Migrator 
+  application is restarted while a sync job is running.
+- :ref:`New Job Management REST API <rm-rest-api>`. The REST API allows 
+  users to start, stop and monitor sync jobs programmatically.
+
+Bug Fixes:
+
+- Fixed an issue where Atlas Sign In sessions expired 
+  after Relational Migrator was idle for a short amount of time.
+- Fixed an issue where it was not possible to import queries from 
+  Oracle databases where the schema or database name contained dots.
+- Fixed an issue where generated Java POJO classes used incorrect types 
+  for date-typed fields. 
+- Fixed an issue where verification could be aborted for schemas with 
+  composite keys when some key fields are excluded.
+- Fixed an issue where jobs would stall without progress if no tables 
+  for the schema were found in the source database. 
+
+1.6.0 Changelog
+---------------
+
+*Released April 18, 2024*
+
+New features:
+
+- Users can :ref:`migrate time series data <rm-timeseries>` into MongoDB
+  with native Time Series support.
+- Users can migrate data from TimescaleDB Hybertables.
+- Users can migrate from a database that has a name
+  different from the name used when creating the corresponding project.
+- Migration performance improves by setting write concern to 1 by
+  default (can be overridden in MongoDB URI).
+- More detailed job logging.
+
+Bug fixes:
+
+- It is now possible to create projects and run sync jobs when the
+  database name or schema name contains dot characters.
+- Fixed an issue where it was not possible to create a calculated field
+  with the same name as an excluded regular field.
+- Miscellaneous quality improvements to the query converter.
+
+1.5.0 Changelog
+---------------
+
+*Released March 6, 2024*
+
+New features:
+
+- Query converter is now in public preview. For details, 
+  see :ref:`rm-enable-query-converter`.
+- Query converter now requires you to sign into a MongoDB Atlas 
+  account. When you sign into Atlas, the process for
+  selecting Atlas clusters in a sync job is dynamically populated.
+- Query converter now supports conversion of relational database DML 
+  triggers to :ref:`Atlas Triggers <triggers>`.
+
+Improvements:
+
+- Query converter now allows you to convert SQL queries and views 
+  to C#, Java, or JavaScript.
+
+Bug fixes:
+
+- Minor improvements to job recoverability and metrics.
+
+1.4.6 Changelog
+---------------
+
+*Released February 12, 2024*
+
+Improvements:
+
+- Added support for Oracle 11g as a source database.
+- New status indicator on the project page that shows if a 
+  migration is running.
+- Improved permissions checks against MongoDB database when starting 
+  a new migration.
+- Improvements to :ref:`Query Converter private preview <rm-query-converter>`.
+
+Bug fixes:
+
+- Fixed an issue where completed migrations could not mark themselves 
+  as complete in web interface.
+
+1.4.4 Changelog
+---------------
+
+*Released January 29, 2024*
+
+Improvements:
+
+- Improved synthetic foreign keys to be preserved after schema refresh.
+- Fix for fully-offline deployments in airgapped environments. 
+- Fix for certain combinations of mappings, specifically two different
+  mappings at the same level of embedding. 
+- Various minor fixes and improvements to Sybase database support, CDC
+  stage metrics, verification stage, database exports, and logging.
+
+1.4.3 Changelog
+---------------
+
+*Released December 11, 2023*
+
+New features:
+
+- `Sybase ASE database 
+  <https://www.sap.com/products/acquired-brands/what-is-sybase.html>`__ 
+  support is now available for one-time snapshot sync jobs and 
+  stored procedure conversion.
+- `Confluent-hosted Kafka support <https://www.confluent.io/>`__ 
+  for participants in the Kafka early access program. This release 
+  adds prebuilt support for connecting to a Kafka cluster managed by 
+  the Confluent hosting provider. 
+  
+  .. note::
+
+    Kafka is an open-source platform for distributed, 
+    high-availability workloads. To gain access to Relational Migrator 
+    with Kafka support, contact your MongoDB account team to sign up 
+    for the Kafka Early Access Program.
+
+- Integration supported with `Hackolade <https://hackolade.com/>`__. 
+
+  .. include:: /includes/fact-hackolade-integration.rst
+
+Improvements:
+
+- Improved SQL query conversion quality for the Query Converter 
+  (private preview). For details on how to join the Query Converter 
+  early access program, see :ref:`rm-query-converter`.
+- Improved application performance through expanded use of available 
+  memory in suitable server environments.
+
+1.3.3 Changelog
+---------------
+
+*Released November 7, 2023*
+
+Improvements:
+
+- Performance improvements for {+job_plural+} that create large arrays.
+- Fixed an issue where schema discovery failed on schema names 
+  that contain the dash character.
+
+1.3.2 Changelog
+---------------
+
+*Released October 25, 2023*
+
+Improvements:
+
+- Improved performance when Relational Migrator analyzes large 
+  relational schemas.
+- Relational Migrator now integrates with the Windows certificate store 
+  for SSL connections. 
+
+New features:
+
+- New installer and binaries for Mac M1 architectures.
+- Mapping rules now show the original column and type used to generate 
+  an ``_id`` field.
+- Improved error messages in query converter (private preview).
+
+1.3.1 Changelog
+---------------
+
+*Released October 10, 2023*
+
+New features:
+
+- Ability to select ``C#``, ``Java``, and ``JavaScript`` target languages
+  for stored procedure conversions in the query converter (private preview).
+
+- Query conversions are now included when you export/import projects.
+
+Bug fixes:
+
+- Fixed an issue where update events could return errors in CDC jobs.
+- Fixed an issue where Relational Migrator could hang while trying to 
+  detect if a new version was available.
+- Fixed an issue where all tables could be unexpectedly unchecked 
+  when selecting tables for a project.
+- Improvements to execution of sync jobs under the Kafka deployment 
+  model (private preview).
+
+1.3.0 Changelog
+---------------
+
+*Released September 26, 2023*
+
+New features:
+
+- The Query Converter feature is now in private preview. To 
+  request private preview access, use the sign-up form within the
+  Relational Migrator application:
+
+  .. include:: /includes/fact-request-private-preview.rst
+
+Bug fixes:
+
+- SQL Server connections now require a database name, which 
+  resolves some issues caused by inferring the database name.
+- Improvements to the Mac and Windows installers.
+
+1.2.0 Changelog
+---------------
+
+*Released September 4, 2023*
+
+New features:
+
+- Ability to change the data type for migrated fields.
+- Ability to control how null values are represented in the migrated data.
+- Ability to use calculated fields for a collection's ``_id`` value.
+- Diagnostic dump includes configuration files to help streamline support. 
+
+Bug fixes:
+
+- Improves to validation and error handling in mapping rules.
+- Improves ability to parse a wider range of Oracle DDL files.
+- Fixes an issue where tables were lost when refreshing a schema using SQL Server and Windows authentication. 
+- Fixes an issue where CDC updates may target the wrong document when tables do not have a primary key.
+- Fixes an issue where database passwords can be incorrectly saved to the browser's password library. 
+
+1.1.3 Changelog
+---------------
+
+*Released July 26, 2023*
+
+New features:
+
+- Support for connecting to a SQL Server named instance.
+- Collection names now show for JSON schema files created from the :guilabel:`Code Generation` screen.
+
+Bug fixes:
+
+- Fixes a post-sync job issue where data verification sometimes stops 
+  or displays as not started.
+- Fixes an issue where JSON columns containing top-level arrays cannot be migrated.
+- Fixes an issue where excluded fields can overwrite calculated fields 
+  with the same name.
+- Fixes an issue where calculated fields based on decimal column values 
+  return ``NaN``.
+- Fixes an issue where some diagram view fields are cut off after you 
+  change the project level key handling option.
+
+1.1.2 Changelog
+---------------
+
+*Released Jun 22, 2023*
+
+Relational Migrator 1.1.2 is now generally available. 
+Relational Migrator assists in migrating your relational workloads to MongoDB.

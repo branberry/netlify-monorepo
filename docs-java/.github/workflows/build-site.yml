@@ -1,0 +1,15 @@
+on: push
+name: Build site
+jobs:
+  build-site:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build Site Step
+        uses: mongodb/docs-worker-actions/build-site@build-site
+        with:
+          site-id: ${{secrets.NETLIFY_SITE_ID}}
+          site-secret: ${{secrets.NETLIFY_AUTH_TOKEN}}
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          npm-auth: ${{secrets.NPM_AUTH}}
+          npm-email: ${{secrets.NPM_EMAIL}}

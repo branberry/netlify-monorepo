@@ -1,0 +1,28 @@
+.. _rm-query-converter:
+
+===============
+Query Converter
+===============
+
+.. contents:: On this page
+   :local:
+   :backlinks: none
+   :depth: 1
+   :class: singlecol
+
+Use Query Converter to convert SQL statements, views, and stored 
+procedures to MongoDB syntax. Relational Migrator considers the mapping 
+rules and schema transformations defined in your project when converting
+your SQL code.
+
+.. toctree::
+   :hidden:
+   :titlesonly:
+
+   /code-generation/query-converter/ai-and-data-usage-information
+   /code-generation/query-converter/enable-query-converter
+   /code-generation/query-converter/convert-queries
+   /code-generation/query-converter/convert-stored-procedures
+   /code-generation/query-converter/convert-triggers
+   /code-generation/query-converter/convert-views
+   /code-generation/query-converter/refresh-database-objects

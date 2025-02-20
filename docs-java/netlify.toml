@@ -1,0 +1,5 @@
+# Redirect with a 301
+[[redirects]]
+from = "/fundamentals/versioned-api"
+to = "/fundamentals/stable-api"
+status = 301
