@@ -1,0 +1,47 @@
+PARSER_VERSION=0.18.16
+
+# This make command curls the examples for certain repos.
+# If the rule doesn't exist, the error doesn't interrupt the build process.
+make examples
+
+if [ ! -d "snooty-parser" ]; then
+  echo "Snooty parser not installed, downloading..."
+  curl -L -o snooty-parser.zip https://github.com/mongodb/snooty-parser/releases/download/v${PARSER_VERSION}/snooty-v${PARSER_VERSION}-linux_x86_64.zip
+  unzip -d ./snooty-parser snooty-parser.zip
+  chmod +x ./snooty-parser/snooty
+fi
+
+echo "======================================================================================================================================================================="
+echo "========================================================================== Running parser... =========================================================================="
+./snooty-parser/snooty/snooty build docs-java/ --no-caching --output=./bundle-java.zip --branch=${BRANCH_NAME}
+echo "========================================================================== Parser complete ============================================================================"
+echo "======================================================================================================================================================================="
+
+./snooty-parser/snooty/snooty build docs-relational-migrator/ --no-caching --output=./bundle-migrator.zip --branch=${BRANCH_NAME}
+
+
+if [ ! -d "snooty" ]; then
+  echo "snooty frontend not installed, downloading"
+  git clone -b netlify-poc --depth 1 https://github.com/mongodb/snooty.git 
+  cd snooty
+  npm ci --legacy-peer-deps
+  git clone --depth 1 https://github.com/mongodb/docs-tools.git ./snooty/docs-tools
+  mkdir -p ./snooty/static/images
+  mv ./snooty/docs-tools/themes/mongodb/static ./static/docs-tools
+  mv ./snooty/docs-tools/themes/guides/static/images/bg-accent.svg ./static/docs-tools/images/bg-accent.svg
+fi
+
+# if [ -d "docs-worker-pool" ]; then
+#   echo "Running persistence module"
+#   node --unhandled-rejections=strict docs-worker-pool/modules/persistence/dist/index.js --path bundle.zip --githubUser netlify
+# fi
+
+cd snooty 
+
+echo GATSBY_MANIFEST_PATH=$(pwd)/../bundle-java.zip > ./.env.production
+npm run build:no-prefix 
+mv ./public ./java
+
+echo GATSBY_MANIFEST_PATH=$(pwd)/../bundle-migrator.zip > ./.env.production 
+npm run build:no-prefix 
+mv ./java ./public/java
