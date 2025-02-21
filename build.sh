@@ -39,6 +39,8 @@ fi
 cd snooty 
 
 echo GATSBY_MANIFEST_PATH=$(pwd)/../bundle-java.zip > ./.env.production
+
+ls -a 
 npm run build:no-prefix 
 mv ./public ./java
 
