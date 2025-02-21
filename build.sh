@@ -19,6 +19,7 @@ echo "==========================================================================
 
 ./snooty-parser/snooty/snooty build docs-relational-migrator/ --no-caching --output=./bundle-migrator.zip --branch=${BRANCH_NAME}
 
+ls 
 
 if [ ! -d "snooty" ]; then
   echo "snooty frontend not installed, downloading"
@@ -36,9 +37,10 @@ fi
 #   node --unhandled-rejections=strict docs-worker-pool/modules/persistence/dist/index.js --path bundle.zip --githubUser netlify
 # fi
 
+
 cd snooty 
 
-echo GATSBY_MANIFEST_PATH=$(pwd)/../bundle-java.zip >> ./.env.production
+echo GATSBY_MANIFEST_PATH=$(pwd)/../bundle-java.zip > ./.env.production
 
 ls -a 
 npm run build:no-prefix 
