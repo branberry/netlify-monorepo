@@ -24,12 +24,9 @@ ls
 if [ ! -d "snooty" ]; then
   echo "snooty frontend not installed, downloading"
   git clone -b netlify-poc --depth 1 https://github.com/mongodb/snooty.git 
-  cd snooty
+  pushd snooty
   npm ci --legacy-peer-deps
-  git clone --depth 1 https://github.com/mongodb/docs-tools.git ./snooty/docs-tools
-  mkdir -p ./snooty/static/images
-  mv ./snooty/docs-tools/themes/mongodb/static ./static/docs-tools
-  mv ./snooty/docs-tools/themes/guides/static/images/bg-accent.svg ./static/docs-tools/images/bg-accent.svg
+  popd
 fi
 
 # if [ -d "docs-worker-pool" ]; then
@@ -38,16 +35,17 @@ fi
 # fi
 
 
-cd snooty 
 
-echo GATSBY_MANIFEST_PATH=$(pwd)/../bundle-java.zip > ./.env.production
+echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-java.zip > snooty/.env.production
 
-
-cat ./.env.production
+pushd snooty
 ls -a 
 npm run build:no-prefix 
 mv ./public ./java
+popd
 
-echo GATSBY_MANIFEST_PATH=$(pwd)/../bundle-migrator.zip > ./.env.production 
+echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-migrator.zip > snooty/.env.production 
+
+pushd snooty
 npm run build:no-prefix 
 mv ./java ./public/java
