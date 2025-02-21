@@ -35,10 +35,10 @@ fi
 #   echo "Running persistence module"
 #   node --unhandled-rejections=strict docs-worker-pool/modules/persistence/dist/index.js --path bundle.zip --githubUser netlify
 # fi
+echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-java.zip > snooty/.env.production
 
 cd snooty 
 
-echo GATSBY_MANIFEST_PATH=$(pwd)/../bundle-java.zip > ./.env.production
 
 ls -a 
 npm run build:no-prefix 
