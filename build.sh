@@ -41,7 +41,7 @@ echo PATH_PREFIX=/java > snooty/.env.production
 
 pushd snooty
 ls -a 
-npm run build:no-prefix 
+npm run build
 mv ./public ./java
 popd
 
