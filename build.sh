@@ -37,7 +37,7 @@ fi
 
 
 echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-java.zip > snooty/.env.production
-echo PATH_PREFIX=/java > snooty/.env.production 
+echo PATH_PREFIX=/java >> snooty/.env.production 
 
 pushd snooty
 ls -a 
