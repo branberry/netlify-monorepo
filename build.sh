@@ -37,6 +37,7 @@ fi
 
 
 echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-java.zip > snooty/.env.production
+echo PATH_PREFIX=/java > snooty/.env.production 
 
 pushd snooty
 ls -a 
@@ -49,3 +50,4 @@ echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-migrator.zip > snooty/.env.production
 pushd snooty
 npm run build:no-prefix 
 mv ./java ./public/java
+popd
