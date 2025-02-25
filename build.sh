@@ -14,6 +14,10 @@ fi
 echo "======================================================================================================================================================================="
 echo "========================================================================== Running parser... =========================================================================="
 ./snooty-parser/snooty/snooty build docs-java/ --no-caching --output=./bundle-java.zip --branch=${BRANCH_NAME}
+./snooty-parser/snooty/snooty build docs-java/ --no-caching --output=./bundle-java-two.zip --branch=${BRANCH_NAME}
+./snooty-parser/snooty/snooty build docs-java/ --no-caching --output=./bundle-java-three.zip --branch=${BRANCH_NAME}
+./snooty-parser/snooty/snooty build docs-java/ --no-caching --output=./bundle-java-four.zip --branch=${BRANCH_NAME}
+
 echo "========================================================================== Parser complete ============================================================================"
 echo "======================================================================================================================================================================="
 
@@ -43,6 +47,34 @@ pushd snooty
 ls -a 
 npm run build
 mv ./public ./java
+popd
+
+echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-java-two.zip > snooty/.env.production
+echo PATH_PREFIX=/java >> snooty/.env.production 
+
+pushd snooty
+ls -a 
+npm run build
+mv ./public ./java-two
+popd
+
+echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-java-three.zip > snooty/.env.production
+echo PATH_PREFIX=/java >> snooty/.env.production 
+
+pushd snooty
+ls -a 
+npm run build
+mv ./public ./java-three
+popd
+
+
+echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-java-four.zip > snooty/.env.production
+echo PATH_PREFIX=/java >> snooty/.env.production 
+
+pushd snooty
+ls -a 
+npm run build
+mv ./public ./java-four
 popd
 
 echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-migrator.zip > snooty/.env.production 
