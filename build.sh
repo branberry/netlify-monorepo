@@ -17,6 +17,7 @@ echo "==========================================================================
 ./snooty-parser/snooty/snooty build docs-java/ --no-caching --output=./bundle-java-two.zip --branch=${BRANCH_NAME}
 ./snooty-parser/snooty/snooty build docs-java/ --no-caching --output=./bundle-java-three.zip --branch=${BRANCH_NAME}
 ./snooty-parser/snooty/snooty build docs-java/ --no-caching --output=./bundle-java-four.zip --branch=${BRANCH_NAME}
+./snooty-parser/snooty/snooty build cloud-docs/ --no-caching --output=./cloud-docs.zip --branch=${BRANCH_NAME}
 
 echo "========================================================================== Parser complete ============================================================================"
 echo "======================================================================================================================================================================="
@@ -76,6 +77,16 @@ ls -a
 npm run build
 mv ./public ./java-four
 popd
+
+echo GATSBY_MANIFEST_PATH=$(pwd)/cloud-docs.zip > snooty/.env.production
+echo PATH_PREFIX=/cloud-docs >> snooty/.env.production 
+
+pushd snooty
+ls -a 
+npm run build
+mv ./public ./cloud-docs
+popd
+
 
 echo GATSBY_MANIFEST_PATH=$(pwd)/bundle-migrator.zip > snooty/.env.production 
 
